@@ -9,14 +9,14 @@ typedef struct node{
 
 Node *first, *last;
 
-void crea()
+void crea()//creo una lista vuota
 {
     first = NULL;
     last = NULL;
 }
 
 
-int potenza (int base,int esponente)
+int potenza (int base,int esponente)//eleva la base all'esponente
 {
     int risultato=0;
     
@@ -27,7 +27,7 @@ int potenza (int base,int esponente)
     return risultato;
 }
 
-void stampa (Node *first)
+void stampa (Node *first)//stampa una lista
 {
     Node *t = first;
     while (t != NULL)
@@ -38,7 +38,7 @@ void stampa (Node *first)
     printf("NULL\n");
 }
 
-int inserisci(char *stringa, int cifre, int i)
+int inserisci(char *stringa, int cifre, int i)//trasforma una pezzo di stringa in numero
 {
     int numero=0, esponente=0;
     while (cifre!=0)
@@ -55,7 +55,7 @@ int inserisci(char *stringa, int cifre, int i)
     return numero;
 }
 
-void aggiungi_elemento(int numero)
+void aggiungi_elemento(int numero)//aggiunge un numero in coda alla lista
 {
     Node *new;
     new = (Node*) malloc(sizeof(Node));
@@ -73,7 +73,7 @@ void aggiungi_elemento(int numero)
    }
 }
 
-int seleziona_elemento(Node *start, int posizione)
+int seleziona_elemento(Node *start, int posizione)//seleziona l' elemento della lista indicato da posizione
 {
     if (start == NULL)
     {
@@ -99,7 +99,7 @@ int seleziona_elemento(Node *start, int posizione)
         return corrente->data;
 }
 
-Node * trasforma_in_lista(char *stringa)
+Node * trasforma_in_lista(char *stringa)//trasforma una stringa in una lista
 {
     int i, l=strlen(stringa), c=0, numero=0;
     crea();
@@ -120,7 +120,7 @@ Node * trasforma_in_lista(char *stringa)
     return first;
 }
 
-int eval(char * val, char * pos) 
+int eval(char * val, char * pos) //ritorna il numero maggiore della lista Val tra quelli indicati dalla lista Pos
 {
     printf("\n");
     Node *startVal = trasforma_in_lista(val);

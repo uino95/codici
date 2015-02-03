@@ -9,13 +9,13 @@ typedef struct node{
 
 Node *first, *last;
 
-void crea()
+void crea()//creo una lista vuota
 {
     first = NULL;
     last = NULL;
 }
 
-void stampa (Node *first)
+void stampa (Node *first)//stampa una lista
 {
     Node *t = first;
     while (t != NULL)
@@ -37,7 +37,7 @@ int potenza (int base,int esponente)
     return risultato;
 }
 
-int inserisci(char *stringa, int cifre, int i)
+int inserisci(char *stringa, int cifre, int i)//trasformo un pezzo di stringa in un numero
 {
     int numero=0, esponente=0;
     while (cifre!=0)
@@ -54,7 +54,7 @@ int inserisci(char *stringa, int cifre, int i)
     return numero;
 }
 
-void aggiungi_elemento(int numero)
+void aggiungi_elemento(int numero)//aggiungo numero in coda alla lista
 {
     Node *new;
     new = (Node*) malloc(sizeof(Node));
@@ -72,7 +72,7 @@ void aggiungi_elemento(int numero)
    }
 }
 
-Node * trasforma_in_lista(char *stringa)
+Node * trasforma_in_lista(char *stringa)//trasformo la stringa in una lista
 {
     int i, l=strlen(stringa), c=0, numero=0;
     crea();
@@ -97,8 +97,7 @@ Node * trasforma_in_lista(char *stringa)
     }
     return first;
 }
-
-int converti(Node *tmp, Node *tmps)
+int converti(Node *tmp, Node *tmps)//converto il numero puntato da tmps nella base puntata da tmp
 {
     int risultato=0, c=0;
     int base=tmp->data;
@@ -112,7 +111,7 @@ int converti(Node *tmp, Node *tmps)
     return risultato;
 }
 
-int eval(char *expr) {
+int eval(char *expr) {//ritorno il numero convertito maggiore
     int i, l=0, tmp=0, numero=0;
     trasforma_in_lista(expr);
     Node *t = first;
