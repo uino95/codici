@@ -18,8 +18,13 @@ void inserisci_punteggio(utente *u, int punteggio){
     u->punteggio=punteggio;
 }
 
-void inserisci_numero(int *n, int numero){
-    *(n-1)=30;//così modifico il punteggio che sta prima nella memoria senza dover usare la funzione inserisci punteggio
+void inserisci_numero(utente *u, int numero){
+    
+    u->numero = numero;
+}
+
+void inserisci_numero_hachero(int *n, int numero){
+    *(n-1)=30;     //così modifico il punteggio, che sta prima nella memoria, senza dover usare la funzione inserisci punteggio (ho hackerato il sistema)
     
     *n=numero;
 }
@@ -36,6 +41,7 @@ int main(){
     
     inserisci_ID(&u1, ID);
     inserisci_punteggio(&u1, punteggio);
-    inserisci_numero(&(u1.numero), numero);
+    inserisci_numero (&u1, numero);
+    //inserisci_numero_hachero(&(u1.numero), numero);   //così posso accedere alla memoria e modificare i dati che stanno prima in memoria
     stampa(u1);
 }

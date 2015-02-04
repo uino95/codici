@@ -41,7 +41,7 @@ int * decimale_binario (int numero) //prende in ingresso un numero intero e mi r
 
 int main() //questa è la funzione main da dove inizio, quindi dichiaro il numero che voglio convertire da decimale a binario e richiamo la funzione che mi fa ciò
 {
-    int numero=1000, *binario;
+    int numero=5, *binario;
     binario = decimale_binario(numero);
     printf ("conversione\nDECIMALE: %d\nBINARIO: ",numero);
     stampa(binario);

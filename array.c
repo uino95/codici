@@ -12,7 +12,8 @@ int main()
     
     printf ("l'array è questo: \n" );
     for (i=0; i<DIM;i++){
-        printf("%2d\n", array[i]);
+        printf("%d ", array[i]);
     }
+    printf("\n");
     return 0;   
 }

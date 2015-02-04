@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define SIZE 10
 
-int main (void)
+int main (void)//mi ordina un array in modo crescente o decrescente
 {
     long int array[SIZE] = {29,45,21,34,67,31,35,6,41,35};
     int j,i,temp=0,modo=0;
@@ -16,7 +16,7 @@ int main (void)
     if (modo == 1){
         for (j=1; j<SIZE; j++){
             for (i=0; i<SIZE-1; i++){
-                if (array[i] > array[i+1]){
+                if (array[i] > array[i+1]){//bubble sort
                     temp = array[i];
                     array[i] = array[i+1];
                     array[i+1] = temp;
@@ -27,7 +27,7 @@ int main (void)
     if (modo==2){
         for (j=1; j<SIZE; j++){
             for (i=0; i<SIZE-1; i++){
-                if (array[i] < array[i+1]){
+                if (array[i] < array[i+1]){//bubble sort
                     temp = array[i];
                     array[i] = array[i+1];
                     array[i+1] = temp;

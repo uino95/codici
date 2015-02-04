@@ -6,8 +6,8 @@ int main()
     int a;
     printf("ciao!! sono un processo!\n");
     
-    a = fork();
-    if (a==0)
+    a = fork();//il progaramma si clona
+    if (a==0)//seleziono solo il processo che ha come valore 0 e non l'altro che invece ritorna un valore diverso da 0
         
         printf("hello\n");
     else

@@ -1,13 +1,13 @@
 #include <string.h>
 #include <stdio.h>
 
-int eval(char *andrea) {
+int eval(char *andrea) {//mi da il risultato dell'espressione tra parentesi solo + e -
     int tmp=0;
     int potenza=1;
     int i;
     int l=strlen(andrea);
     int totale=0;
-    for (i=l-1; i>=0;i--)
+    for (i=l-1; i>=0;i--)//scorro se trovo un + sommo se no sotraggo e poi riazzero tmp
     {
         if (andrea[i] == '+')
         {
@@ -25,7 +25,7 @@ int eval(char *andrea) {
             }
             else
             {
-                tmp += potenza*(andrea[i]-'0');
+                tmp += potenza*(andrea[i]-'0');//qui sommo ad ogni ciclo per ottenere alla fine il numero
                 potenza*= 10;
                 printf ("andrea dice che tmp é: %d\n", tmp);
             }

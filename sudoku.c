@@ -2,7 +2,7 @@
 #include <math.h>
 #include <time.h>
 #include <stdlib.h>
-#define DIM 9
+#define DIM 4
 
 int riga_corretta(int m[DIM][DIM], int riga)//controlla la riga che gli viene data in ingresso: se almeno un numero si ripete ritorna 0 se no 1 
 {
@@ -282,9 +282,9 @@ int main ()//sceglie tra tre modalità 1= crea dei sudoku completi casuali per e
         crea_sudoku(m,difficoltà);
         while (corretta(m)==0){
             crea_sudoku(m,difficoltà);
-            if (c>100000000){
+            if (c>10000000){
                 printf("ops non ho trovato un sudoku risolvibile, seleziona una modalità più difficile\n");
-                break;
+                return 0;
             }
             c++;
         }

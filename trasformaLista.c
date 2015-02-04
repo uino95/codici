@@ -9,14 +9,14 @@ typedef struct node{
 
 Node *first, *last;
 
-void crea()
+void crea()//mi crea una lista vuota
 {
     first = NULL;
     last = NULL;
 }
 
 
-int potenza (int base,int esponente)
+int potenza (int base,int esponente)//eleva la base all'esponente
 {
     int risultato=0;
     
@@ -27,7 +27,7 @@ int potenza (int base,int esponente)
     return risultato;
 }
 
-void stampa (Node *first)
+void stampa (Node *first)//stampa la lista
 {
     Node *t = first;
     while (t != NULL)
@@ -38,7 +38,7 @@ void stampa (Node *first)
     printf("NULL\n");
 }
 
-int inserisci(char *stringa, int cifre, int i)
+int inserisci(char *stringa, int cifre, int i)//mi trasforma un pezzo di stringa in un intero
 {
     int numero=0, esponente=0;
     while (cifre!=0)
@@ -55,7 +55,7 @@ int inserisci(char *stringa, int cifre, int i)
     return numero;
 }
 
-void aggiungi_elemento(int numero)
+void aggiungi_elemento(int numero)//mi aggiunge l'elemento in coda
 {
     //printf ("first è %p\n", first);
     //printf ("last è %p\n", last);
@@ -78,7 +78,7 @@ void aggiungi_elemento(int numero)
    //stampa (first);
 }
 
-Node * trasforma_in_lista(char *stringa)
+Node * trasforma_in_lista(char *stringa)//mi trasforma una stringa in una lista
 {
     int i, l=strlen(stringa), c=0, numero=0;
     crea();
@@ -112,5 +112,5 @@ int main ()
     stampa(trasforma_in_lista(stringa1));
     printf ("la stringa è %s\n", stringa2);
     printf("la lista è \n");
-    stampa(trasforma_in_lista(stringa2));    
+    stampa(trasforma_in_lista(stringa2));
 }

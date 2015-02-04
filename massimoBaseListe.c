@@ -42,7 +42,7 @@ int inserisci(char *stringa, int cifre, int i)//trasformo un pezzo di stringa in
     int numero=0, esponente=0;
     while (cifre!=0)
     {
-        if (stringa[i]=='-')
+        if (stringa[i]=='-')//nel caso in cui il numero sia negativo dopo averlo convertito in intero gli sottraggo se stesso moltiplicato per 2 così da ottenre il negativo
             numero-=numero*2;
         else
             numero += (stringa[i]-'0') * (potenza(10,esponente));
@@ -82,7 +82,7 @@ Node * trasforma_in_lista(char *stringa)//trasformo la stringa in una lista
         if (stringa[i] != ' ' && stringa[i] != '\0')
             c++;
         
-        if ((stringa[i] == ' ' || stringa[i] == '\0') && (stringa[i-1] == ' ' || i == 0));
+        if ((stringa[i] == ' ' || stringa[i] == '\0') && (stringa[i-1] == ' ' || i == 0));//questo nel caso abbia più spazi allora non faccio niente
         
         else{
             if (stringa[i] == ' ' || stringa[i] == '\0')
@@ -102,6 +102,7 @@ int converti(Node *tmp, Node *tmps)//converto il numero puntato da tmps nella ba
     int risultato=0, c=0;
     int base=tmp->data;
     int numero=tmps->data;
+    
     while(numero!= 0){
         risultato += (numero%10) * potenza(base,c);
         c++;
@@ -112,15 +113,27 @@ int converti(Node *tmp, Node *tmps)//converto il numero puntato da tmps nella ba
 }
 
 int eval(char *expr) {//ritorno il numero convertito maggiore
-    int i, l=0, tmp=0, numero=0;
+    int i, tmp=0, numero=0;
+    
     trasforma_in_lista(expr);
-    Node *t = first;
+    printf("la lista è: ");
+    stampa(first);
+    
+    Node *t = first;//lo uso per scorrere la lista
+    
     while(t != NULL)
     {
         numero=converti(t, t->next);
-        if(numero>tmp)
+        printf("il numero convertito è %d\n", numero);
+        if (tmp == 0) //se è il primo giro
             tmp = numero;
-        t=t->next;
+        else
+        {
+            if(numero>tmp)
+                tmp = numero;
+        }
+        
+        t=t->next;//scorro la lista per coppie di numeri
         t=t->next;
     }
     return tmp;
@@ -128,5 +141,5 @@ int eval(char *expr) {//ritorno il numero convertito maggiore
 
 int main()
 {
-    printf ("il numero maggiore è %d\n", eval("2 1 4 3 8 3"));
+    printf ("il numero maggiore è %d\n", eval("2 1     4 3 8 3"));
 }
