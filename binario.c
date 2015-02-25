@@ -1,10 +1,6 @@
 //
 //  main.c
 //  prende in ingresso due sequenze da tot bit e mi restituisce la somma delle due sequenze
-//
-//  Created by Matteo Sinico on 02/12/14.
-//  Copyright (c) 2014 Matteo Sinico. All rights reserved.
-//
 
 #include <stdio.h>//questa libreria mi serve per usare funzioni come la printf
 #include <stdlib.h>

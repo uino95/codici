@@ -39,19 +39,34 @@ int potenza (int base,int esponente)
 
 int inserisci(char *stringa, int cifre, int i)//trasformo un pezzo di stringa in un numero
 {
-    int numero=0, esponente=0;
+    int numero=0, esponente=0, totale=0;
     while (cifre!=0)
     {
-        if (stringa[i]=='-')//nel caso in cui il numero sia negativo dopo averlo convertito in intero gli sottraggo se stesso moltiplicato per 2 così da ottenre il negativo
-            numero-=numero*2;
+        if (stringa[i]=='+')
+        {
+            totale+=numero;
+            numero=0;
+            esponente = 0;
+        }
         else
-            numero += (stringa[i]-'0') * (potenza(10,esponente));
+        {
+            if (stringa[i] == '-')
+            {
+                totale-=numero;
+                numero=0;
+                esponente = 0; 
+            }
+            else
+            {
+                numero += (stringa[i]-'0') * (potenza(10,esponente));
+                esponente++;
+            }
+        }  
         cifre--;
-        esponente++;
         i--;
     }
- 
-    return numero;
+    totale += numero;
+    return totale;
 }
 
 void aggiungi_elemento(int numero)//aggiungo numero in coda alla lista
@@ -71,6 +86,33 @@ void aggiungi_elemento(int numero)//aggiungo numero in coda alla lista
         last = new;
    }
 }
+
+int seleziona_elemento(Node *start, int posizione)
+{
+    if (start == NULL)
+    {
+        printf ("lista vuota\n");
+        return 0;
+    }
+    Node *corrente = start;
+    Node *precedente = NULL;
+    
+    while (posizione > 0 && corrente != NULL)
+    {
+        precedente = corrente;
+        corrente = corrente->next; 
+        posizione --;
+    }
+    
+    if (corrente == NULL || posizione < 0)
+    {
+        printf ("Non posso selezionare l'elemento\n");
+        return 0;
+    }
+    else
+        return corrente->data;
+}
+
 
 Node * trasforma_in_lista(char *stringa)//trasformo la stringa in una lista
 {
@@ -95,7 +137,7 @@ Node * trasforma_in_lista(char *stringa)//trasformo la stringa in una lista
             }
         }
     }
-    
+    stampa (first);
     return first;
 }
 int converti(Node *tmp, Node *tmps)//converto il numero puntato da tmps nella base puntata da tmp
@@ -113,34 +155,44 @@ int converti(Node *tmp, Node *tmps)//converto il numero puntato da tmps nella ba
     return risultato;
 }
 
-int eval(char *expr) {//ritorno il numero convertito maggiore
+int eval(char *expr, char *expr2) {//ritorno il numero convertito maggiore
     int i, tmp=0, numero=0;
+    printf("i valori sono\n");
+    Node *valori = trasforma_in_lista(expr);
     
-    trasforma_in_lista(expr);
-    printf("la lista è: ");
-    stampa(first);
+    printf ("le posizioni sono\n");
+    Node *posizioni = trasforma_in_lista(expr2);
     
-    Node *t = first;//lo uso per scorrere la lista
-    
+    crea();//creo una nuova lista in cui andrò ad inserire i valori convertiti
+    Node *t = valori;//lo uso per scorrere la lista dei valori
+    Node *p = posizioni;//lo uso per scorrere la lista delle posizioni
     while(t != NULL)
     {
         numero=converti(t, t->next);
-        printf("il numero convertito è %d\n", numero);
-        if (tmp == 0) //se è il primo giro
-            tmp = numero;
-        else
-        {
-            if(numero>tmp)
-                tmp = numero;
-        }
-        
+        printf("il numero convertito è %i\n", numero);
+        aggiungi_elemento(numero);//aggiungo il numero alla nuova lista
         t=t->next;//scorro la lista per coppie di numeri
         t=t->next;
+    }
+    printf("la lista dei valori coi numeri convertiti è:\n");
+    stampa(first);
+    while(p != NULL)
+    {
+        if (tmp == 0)
+            tmp = seleziona_elemento(first, p->data); 
+
+        else
+        {
+            if (seleziona_elemento(first, p->data) > tmp)
+                tmp = seleziona_elemento(first, p->data);
+        }
+        printf("tmp è %d\n", tmp);
+        p = p->next;
     }
     return tmp;
 }
 
 int main()
 {
-    printf ("il numero maggiore è %d\n", eval("8 -2"));
+    printf ("il numero maggiore è %d\n", eval("9 -4 3 1 7 -3 3 2","2"));
 }

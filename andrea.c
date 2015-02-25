@@ -37,6 +37,6 @@ int eval(char *andrea) {//mi da il risultato dell'espressione tra parentesi solo
 
 int main()
 {
-    printf("andrea dice che 123+124 fa: %d\n", eval("123+124"));
+    printf("andrea dice che 123+124 fa: %d\n", eval("123-28"));
     
 }
