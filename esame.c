@@ -56,15 +56,15 @@ int inserisci(char *stringa, int cifre, int i)
     return totale;
 }
 
-void aggiungi_elemento(int numero)
+void aggiungi_elemento(int numero, Node **start)
 {
     Node *new;
     new = (Node*) malloc(sizeof(Node));
     new->data = numero;
     new->next = NULL;
-    if (first == NULL)
+    if (*start == NULL)
     {
-        first = new;
+        *start = new;
         last = new;
     }
     else 
@@ -117,7 +117,7 @@ Node * trasforma_in_lista(char *stringa)
             {
                 numero = inserisci(stringa, c , i-1);
 
-                aggiungi_elemento(numero);
+                aggiungi_elemento(numero, &first);
                 c = 0;
     
             }
@@ -142,33 +142,41 @@ int converti(Node *tmp, Node *tmps)
 
 int eval(char *ns, char *is) {
     int tmp=0, numero=0;
+    
     Node *valori = trasforma_in_lista(ns);
+    stampa(valori);
     Node *posizioni = trasforma_in_lista(is);
+    stampa(posizioni);
     Node *t = valori;
     crea();
-    Node *valoriConvertiti = first;
-    Node *val = valoriConvertiti;
+    Node *val = first;
     Node *pos = posizioni;
     while(t != NULL)
     {
         numero = converti(t, t->next);
         printf("numero convertito: %d\n", numero);
-        aggiungi_elemento(numero);
+        aggiungi_elemento(numero, &val);
         t=t->next;
         t=t->next;
     }
+    stampa(val);
     while(pos != NULL)
     {
         if (tmp == 0)
         {
-            tmp = seleziona_elemento(first, pos->data);
+            tmp = seleziona_elemento(val, pos->data);
         }
         else
         {
-            if (seleziona_elemento(first, pos->data) > tmp)
-                tmp = seleziona_elemento(first, pos->data);
+            if (seleziona_elemento(val, pos->data) > tmp)
+                tmp = seleziona_elemento(val, pos->data);
         }
         pos=pos->next;
     }
     return tmp;
+}
+
+int main()
+{
+    printf ("il numero maggiore è %d\n", eval("9 -4 3 1 7 -3 3 2","5 0 3 6"));
 }
